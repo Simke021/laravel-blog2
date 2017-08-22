@@ -19,15 +19,21 @@
             <div class="box-header with-border">
               <h3 class="box-title">Titles</h3>
             </div>
+            @if(count($errors) > 0 )
+              @foreach($errors->all() as $error)
+                <p class="alert alert-danger">{{ $error }}</p>
+              @endforeach
+            @endif
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" action="{{ route('post.store') }}" method="POST">
+            {{ csrf_field() }}
               <div class="row">
                 <div class="col-lg-6">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="title">Post Title:</label>
-                      <input type="text" name="title" class="form-control" id="title" placeholder="Post title ...">
+                      <input type="text" name="title" class="form-control" id="title" placeholder="Post title ..." required">
                     </div>
                     <div class="form-group">
                       <label for="subtitle">Post Subtitle:</label>
@@ -72,9 +78,7 @@
                 <!-- /.box-header -->
 
                 <div class="box-body pad">
-                  <form>
-                    <textarea class="textarea" placeholder="Place Text for Post Bpdy Here..." name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                  </form>
+                  <textarea class="textarea" placeholder="Place Text for Post Bpdy Here..." name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
 
               </div><!-- End of box -->

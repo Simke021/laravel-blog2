@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\user\post;
 
 class PostController extends Controller
 {
@@ -35,7 +36,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validacija
+        $this->validate($request, [
+            'title'    => 'required', 
+            'subtitle' => 'required',
+            'slug'     => 'required',
+            'body'     => 'required'
+            ]);
+
+        // Kreiram Post
+        $post = new Post;
+
+        $post->title    = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug     = $request->slug;
+        $post->body     = $request->body;
+
+        $post->save();
+
+        // Redirekcija
+        return redirect(route('post.index'));
+
     }
 
     /**
