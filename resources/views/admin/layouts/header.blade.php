@@ -1,8 +1,8 @@
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('admin.home') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Admin Panel</b>LT</span>
+      <span class="logo-mini"><b>APP</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Laravel Blog</b>  5.4</span>
     </a>
@@ -249,10 +249,6 @@
                 </div>
               </li>
             </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>

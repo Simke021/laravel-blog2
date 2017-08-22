@@ -27,8 +27,8 @@
                   <div class="box-body">
 
                     <div class="form-group">
-                      <label for="name">Category title:</label>
-                      <input type="text" name="name" class="form-control" id="name" placeholder="Post category ...">
+                      <label for="name">Category name:</label>
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Post category name...">
                     </div>
 
                     <div class="form-group">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group">
-	                <button type="submit" class="btn btn-primary">Submit</button>
+	                <button type="submit" class="btn btn-primary">Create Category</button>
 	              </div>
                 </div>
 

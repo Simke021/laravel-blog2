@@ -80,7 +80,7 @@
               </div><!-- End of box -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Create Post</button>
                 </div>
 
             </form>

@@ -27,7 +27,7 @@
                   <div class="box-body">
 
                     <div class="form-group">
-                      <label for="name">Tag:</label>
+                      <label for="name">Tag Name:</label>
                       <input type="text" name="name" class="form-control" id="name" placeholder="Post tag ...">
                     </div>
 
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group">
-	                <button type="submit" class="btn btn-primary">Submit</button>
+	                <button type="submit" class="btn btn-primary">Create Tag</button>
 	              </div>
                 </div>
 
