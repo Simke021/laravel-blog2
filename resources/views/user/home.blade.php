@@ -20,15 +20,15 @@
                         </h2>
                     </a>
                     <h3 class="post-subtitle">{{ $post->subtitle }}</h3>
-                    <p class="post-meta">Posted by: <a href="#">Start Bootstrap</a> {{ $post->created_at->diffForHumans() }}</p>
+                    <p class="post-meta">Posted by: <strong><a href="#">Admin</a></strong> {{ $post->created_at->diffForHumans() }}</p>
+
                 </div>
-                
-            @endforeach
-            <hr>
+                <hr>
+            @endforeach            
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
+                        {{ $posts->links() }}
                     </li>
                 </ul>
             </div>

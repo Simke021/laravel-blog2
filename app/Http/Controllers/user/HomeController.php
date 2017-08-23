@@ -10,8 +10,8 @@ class HomeController extends Controller
 {
     public function index(){
 
-    	// Utimam sve postove sa statusom 1 (published)
-    	$posts = Post::where('status', 1)->get();
+    	// Utimam sve postove sa statusom 1 (published), sa paginate-om od 4 posta po strani
+    	$posts = Post::where('status', 1)->paginate(5);
     	return view('user.home', compact('posts'));
     }
 }
