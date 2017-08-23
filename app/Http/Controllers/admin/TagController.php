@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\user\tag;
 
 class TagController extends Controller
 {
@@ -14,7 +15,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tag.show');
+        // Uzimam sve iz baze/kolone tags
+        $tags = Tag::all();
+
+        // Prokazujem na strani
+        return view('admin.tag.show', compact('tags'));
     }
 
     /**
@@ -36,7 +41,22 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validacija
+        $this->validate($request, [
+            'name' => 'required', 
+            'slug' => 'required'
+            ]);
+
+        // Kreiram tag
+        $tag = new Tag;
+
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+
+        $tag->save();
+
+        // Redirekcija
+        return redirect(route('tag.index'));
     }
 
     /**

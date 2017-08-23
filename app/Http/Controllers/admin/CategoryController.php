@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\user\category;
+
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.show');
+        // Utimam iz baze sve iz kolone category
+        $categories = Category::all();
+
+        return view('admin.category.show', compact('categories'));
     }
 
     /**
@@ -35,7 +40,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                // Validacija
+        $this->validate($request, [
+            'name' => 'required', 
+            'slug' => 'required'
+            ]);
+
+        // Kreiram tag
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+
+        $category->save();
+
+        // Redirekcija
+        return redirect(route('category.index'));
     }
 
     /**

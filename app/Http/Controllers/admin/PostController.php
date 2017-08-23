@@ -15,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.show');
+        // Utimam iz baze sve iz kolone posts
+        $posts = Post::all();
+
+        // Prikaz na strani 
+        return view('admin.post.show', compact('posts'));
     }
 
     /**

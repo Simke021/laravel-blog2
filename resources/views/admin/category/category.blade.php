@@ -19,9 +19,11 @@
             <div class="box-header with-border">
               <h3 class="box-title">Titles</h3>
             </div>
+            @include('includes.messages')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" action="{{ route('category.store') }}" method="POST">
+            {{ csrf_field() }}
               <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
                   <div class="box-body">
@@ -37,11 +39,11 @@
                     </div>
 
                     <div class="form-group">
-	                <button type="submit" class="btn btn-primary">Create Category</button>
-	              </div>
-                </div>
-
-			  </div><!-- End of col-lg-6 --> 
+    	                <button type="submit" class="btn btn-primary">Create Category</button>
+                      <a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>
+    	              </div>
+                  </div>
+                </div><!-- End of col-lg-6 --> 
             </form>
           </div>
         </div>

@@ -18,7 +18,9 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            @include('includes.messages')
+            <form role="form" action="{{ route('user.store') }}" method="POST">
+            {{ csrf_field() }}
               <div class="row">
                 <div class="col-lg-6">
                   <div class="box-body">
@@ -77,7 +79,7 @@
               </div><!-- End of box -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Create Post</button>
+                  <button type="submit" class="btn btn-primary">Create User</button>
                 </div>
 
             </form>
