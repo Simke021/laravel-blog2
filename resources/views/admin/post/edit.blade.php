@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+  <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.css') }}">
+@endsection
+
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -44,18 +48,47 @@
                 </div><!-- End of col-lg-6 -->                              
                   <div class="col-lg-6">
                     <div class="box-body">
-
                       <div class="form-group">
-                        <label for="image">File input:</label>
-                        <input type="file" id="image" name="image">
+                        <label>Select Tags:</label>
+                        <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Tags" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]>
+                          @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}"
+                              @foreach($post->tags as $postTag)
+                                @if($postTag->id == $tag->id)
+                                  selected
+                                @endif 
+                              @endforeach       
+                            >{{ $tag->name }}</option>
+                          @endforeach
+                        </select>
                       </div>
-                      <br>
-                      <div class="checkbox">
+                      <div class="form-group">
+                        <label>Select Category:</label>
+                        <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Category" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]>
+                          @foreach($categories as $category)
+                            <option value="{{ $category->id }}"
+                              @foreach($post->categories as $postCategory)
+                                @if($postCategory->id == $category->id)
+                                  selected
+                                @endif 
+                              @endforeach 
+                            >{{ $category->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <div class="pull-right">
+                          <label for="image">File input:</label>
+                          <input type="file" id="image" name="image">
+                        </div>
+                        <div class="checkbox pull-left">
                         <label>
-                          <input type="checkbox" name="status" @if($post->status == 1) checked @endif > Publish
+                          <input type="checkbox" name="status" value="1" @if($post->status == 1) {{ 'checked' }} @endif > Publish
                         </label>
-                      </div>
-                    </div>  
+                        </div>
+                      </div><!-- End form-group -->
+                      <br>                     
+                    </div> <!-- End box-body --> 
                   </div><!-- End of col-lg-6 -->
                </div><!-- End of row-->                                          
               <!-- /.box-body -->
@@ -71,14 +104,10 @@
                   <!-- /. tools -->
                 </div>
                 <!-- /.box-header -->
-
                 <div class="box-body pad">
-                  <textarea class="textarea" placeholder="Place Text for Post Body Here..." name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required>{{ $post->body }}
-                  </textarea>
+                  <textarea name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
                 </div>
-
               </div><!-- End of box -->
-
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Update Post</button>
                   <a href="{{ route('post.index') }}" class="btn btn-warning">Back</a>
@@ -94,4 +123,27 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+
+@section('footerSection')
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<!-- CK editor script -->
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5();
+  });
+</script>
+ <!-- Za unos -->
+  <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+  <script>
+    $(document).ready(function(){
+      //Initialize Select2 Elements
+      $(".select2").select2();
+      });
+  </script>
 @endsection

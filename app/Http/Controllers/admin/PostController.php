@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\user\post;
+use App\Model\user\tag;
+use App\Model\user\category;
 
 class PostController extends Controller
 {
@@ -29,7 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.post');
+        $tags       = Tag::all();
+        $categories = Category::all();
+        return view('admin.post.post', compact('tags', 'categories'));
     }
 
     /**
@@ -55,9 +59,12 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug     = $request->slug;
         $post->body     = $request->body;
-
+        $post->status   = $request->status;
+        
         $post->save();
 
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->categories);
         // Redirekcija
         return redirect(route('post.index'));
 
@@ -82,11 +89,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // Trazim post u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
-       $post = Post::where('id', $id)->first();      
+       // Trazim post u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
+       $post       = Post::with('tags', 'categories')->where('id', $id)->first();
+       $tags       = Tag::all();
+       $categories = Category::all();
 
        // Prikazujem post za editovanje, sva polja popunjavam
-       return view('admin.post.edit', compact('post'));
+       return view('admin.post.edit', compact('post', 'tags', 'categories'));
     }
 
     /**
@@ -113,7 +122,13 @@ class PostController extends Controller
         $post->subtitle = $request->subtitle;
         $post->slug     = $request->slug;
         $post->body     = $request->body;
+        $post->status   = $request->status;
 
+        // Ubacujem tagove i categorije
+        $post->tags()      ->sync($request->tags);
+        $post->categories()->sync($request->categories);
+
+        // Sacuvavam u bazi
         $post->save();
 
         // Redirektujem 
