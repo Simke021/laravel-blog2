@@ -128,7 +128,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        // Utimam post iz baze po id-u i brisem ga
+        // Uzimam post iz baze po id-u i brisem ga
         Post::where('id', $id )->delete();
 
         // Redirekcija

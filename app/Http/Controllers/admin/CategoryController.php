@@ -77,7 +77,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Trazim category u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
+       $category = Category::where('id', $id)->first();      
+
+       // Prikazujem category za editovanje, sva polja popunjavam
+       return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -89,7 +93,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validacija editovanog posta
+        $this->validate($request, [
+            'name'    => 'required', 
+            'slug' => 'required'
+            ]);
+
+        // Ubacujem update-ovanu kategoriju u bazu
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->save();
+
+        // Redirektujem 
+        return redirect(route('category.index'));
     }
 
     /**
@@ -100,6 +118,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Uzimam categoriju iz baze po id-u i brisem je
+        Category::where('id', $id )->delete();
+
+        // Redirekcija
+        return redirect()->back();
     }
 }

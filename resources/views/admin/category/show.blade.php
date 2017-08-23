@@ -27,9 +27,6 @@
 		        </div>
 		        <div class="box-body">
 		          	<div class="box">
-			            <div class="box-header">
-			              <h3 class="box-title">Data Table With Full Features</h3>
-			            </div>
 			            <!-- /.box-header -->
 			            <div class="box-body">
 			              <table id="example1" class="table table-bordered table-striped">
@@ -48,8 +45,21 @@
 			                  <td>{{ $category->id }}</td>
 			                  <td>{{ $category->name }}</td>
 			                  <td>{{ $category->slug }}</td>
-			                  <td><a href="#" class="btn btn-default">Edit</a></td>
-			                  <td><a href="#" class="btn btn-danger">Delete</a></td>
+			                  <td><a href="{{ route('category.edit', $category->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+			                  <td>
+			                  	<form id="delete-form-{{ $category->id }}" action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:none;" >
+			                  		{{ csrf_field() }}
+			                  		{{ method_field('DELETE') }}
+			                  	</form>
+			                  	<a href="" 
+			                  		onclick="
+			                  			if(confirm('Do you Realy want to delete this Category?')) {
+			                  				event.preventDefault(); document.getElementById('delete-form-{{ $category->id }}').submit(); 
+			                  			}else{
+											event.preventDefault();
+			                  			}" ><span class="glyphicon glyphicon-trash"></span>
+			                  	</a>
+			                  </td>
 			                </tr>
 			            @endforeach
 			                </tbody>

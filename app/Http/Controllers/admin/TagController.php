@@ -78,7 +78,11 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Trazim tag u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
+       $tag = Tag::where('id', $id)->first();      
+
+       // Prikazujem tag za editovanje, sva polja popunjavam
+       return view('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -90,7 +94,21 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validacija editovanog posta
+        $this->validate($request, [
+            'name' => 'required', 
+            'slug' => 'required'
+            ]);
+
+        // Ubacujem update-ovanu kategoriju u bazu
+        $tag = Tag::find($id);
+
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+
+        // Redirektujem 
+        return redirect(route('tag.index'));
     }
 
     /**
@@ -101,6 +119,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Uzimam tag iz baze po id-u i brisem ga
+        Tag::where('id', $id )->delete();
+
+        // Redirekcija
+        return redirect()->back();
     }
 }
