@@ -19,4 +19,9 @@ class post extends Model
     	// vise na vise veza izmedju tabela posts i categories
     	return $this->belongsToMany('App\Model\user\category', 'category_posts')->withTimestamps();
     }
+
+    // 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
 }

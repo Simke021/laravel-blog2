@@ -119,8 +119,10 @@
 @endsection
 
 @section('footerSection')
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+ <!-- Za unos -->
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+<!-- CK Editor CND -->
+<script src="//cdn.ckeditor.com/4.7.2/full/ckeditor.js"></script>
 <!-- CK editor script -->
 <script>
   $(function () {
@@ -131,8 +133,6 @@
     $(".textarea").wysihtml5();
   });
 </script>
- <!-- Za unos -->
-  <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
   <script>
     $(document).ready(function(){
       //Initialize Select2 Elements

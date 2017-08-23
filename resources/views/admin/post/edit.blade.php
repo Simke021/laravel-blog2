@@ -105,7 +105,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body pad">
-                  <textarea name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+                  <textarea name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1">{{ $post->body }}</textarea>
                 </div>
               </div><!-- End of box -->
                 <div class="box-footer">
@@ -126,8 +126,10 @@
 @endsection
 
 @section('footerSection')
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+ <!-- Za unos -->
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
+<!-- CK Editor CND -->
+<script src="//cdn.ckeditor.com/4.7.2/full/ckeditor.js"></script>
 <!-- CK editor script -->
 <script>
   $(function () {
@@ -138,12 +140,10 @@
     $(".textarea").wysihtml5();
   });
 </script>
- <!-- Za unos -->
-  <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
-  <script>
+<script>
     $(document).ready(function(){
       //Initialize Select2 Elements
       $(".select2").select2();
       });
-  </script>
+</script>
 @endsection
