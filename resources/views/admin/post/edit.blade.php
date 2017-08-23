@@ -22,22 +22,23 @@
             @include('includes.messages')
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ route('post.store') }}" method="POST">
+            <form role="form" action="{{ route('post.update', $post->id) }}" method="POST">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
               <div class="row">
                 <div class="col-lg-6">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="title">Post Title:</label>
-                      <input type="text" name="title" class="form-control" id="title" placeholder="Post title ..." required">
+                      <input type="text" name="title" class="form-control" id="title" placeholder="Post title ..." required value="{{ $post->title }}">
                     </div>
                     <div class="form-group">
                       <label for="subtitle">Post Subtitle:</label>
-                      <input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="Post Subtitle ...">
+                      <input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="Post Subtitle ..." required value="{{ $post->subtitle }}">
                     </div>
                     <div class="form-group">
                       <label for="slug">URL Post Slug:</label>
-                      <input type="text" name="slug" class="form-control" id="slug" placeholder="URL Slug ...">
+                      <input type="text" name="slug" class="form-control" id="slug" placeholder="URL Slug ..." required value="{{ $post->slug }}">
                     </div>
                   </div>
                 </div><!-- End of col-lg-6 -->                              
@@ -51,7 +52,7 @@
                       <br>
                       <div class="checkbox">
                         <label>
-                          <input type="checkbox" name="status"> Publish
+                          <input type="checkbox" name="status" @if($post->status == 1) checked @endif > Publish
                         </label>
                       </div>
                     </div>  
@@ -61,9 +62,7 @@
               <!-- /.box -->
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Write Post here:
-                    <small>Simple and fast</small>
-                  </h3>
+                  <h3 class="box-title">Write Post here:</h3>
                   <!-- tools box -->
                   <div class="pull-right box-tools">
                     <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -74,13 +73,14 @@
                 <!-- /.box-header -->
 
                 <div class="box-body pad">
-                  <textarea class="textarea" placeholder="Place Text for Post Body Here..." name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                  <textarea class="textarea" placeholder="Place Text for Post Body Here..." name="body" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required>{{ $post->body }}
+                  </textarea>
                 </div>
 
               </div><!-- End of box -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Create Post</button>
+                  <button type="submit" class="btn btn-primary">Update Post</button>
                   <a href="{{ route('post.index') }}" class="btn btn-warning">Back</a>
                 </div>
 

@@ -40,7 +40,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // Validacija
+        // Validacija umosa
         $this->validate($request, [
             'title'    => 'required', 
             'subtitle' => 'required',
@@ -48,7 +48,7 @@ class PostController extends Controller
             'body'     => 'required'
             ]);
 
-        // Kreiram Post
+        // Kreiram Post i ubacujem ga u bazu
         $post = new Post;
 
         $post->title    = $request->title;
@@ -82,7 +82,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Trazim post u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
+       $post = Post::where('id', $id)->first();      
+
+       // Prikazujem post za editovanje, sva polja popunjavam
+       return view('admin.post.edit', compact('post'));
     }
 
     /**
@@ -94,7 +98,26 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validacija editovanog posta
+        $this->validate($request, [
+            'title'    => 'required', 
+            'subtitle' => 'required',
+            'slug'     => 'required',
+            'body'     => 'required'
+            ]);
+
+        // Ubacujem update-ovan post u bazu
+        $post = Post::find($id);
+
+        $post->title    = $request->title;
+        $post->subtitle = $request->subtitle;
+        $post->slug     = $request->slug;
+        $post->body     = $request->body;
+
+        $post->save();
+
+        // Redirektujem 
+        return redirect(route('post.index'));
     }
 
     /**
@@ -105,6 +128,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Utimam post iz baze po id-u i brisem ga
+        Post::where('id', $id )->delete();
+
+        // Redirekcija
+        return redirect()->back();
     }
 }

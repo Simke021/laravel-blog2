@@ -1,9 +1,5 @@
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+  <footer class="main-footer text-center">
+    <p><strong>Copyright &copy;  <a target="_blank" href="https://www.facebook.com/aleksandar.ljubisic">Aleksandar Ljubišić</a> All rights reserved <a target="_blank" href="https://github.com/Simke021">Find me on github</a>.</strong></p>
   </footer>
 
   <!-- jQuery 3.x. -->
