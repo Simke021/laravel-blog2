@@ -2,9 +2,9 @@
 
 @section('bg-img', asset('user/img/home-bg.jpg'))
 
-@section('title', 'Welcome to My Blog')
+@section('title', 'Programming Blog')
 
-@section('sub-title', 'A Clean Blog Theme by Start Bootstrap')
+@section('sub-title', 'welcome to our community')
 
 @section('main-content')
 	<!-- Main Content -->
