@@ -32,6 +32,6 @@ Route::group(['namespace' => 'admin'], function(){
 });
 
 
+Auth::routes();
 
-
-
+Route::get('/home', 'HomeController@index')->name('home');
