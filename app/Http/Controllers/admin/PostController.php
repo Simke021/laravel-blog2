@@ -49,12 +49,24 @@ class PostController extends Controller
             'title'    => 'required', 
             'subtitle' => 'required',
             'slug'     => 'required',
-            'body'     => 'required'
+            'body'     => 'required',
+            'image'    => 'required'
             ]);
+
+        // Upload Slike Posta
+        if ($request->hasFile('image')) {
+
+            // ako zelim originalno ime slike
+            // return $request->image->getClientOriginalName();
+
+            // Random Name slike
+            $imageName = $request->image->store('public');
+        }
 
         // Kreiram Post i ubacujem ga u bazu
         $post = new Post;
 
+        $post->image    = $imageName;
         $post->title    = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug     = $request->slug;
@@ -112,12 +124,24 @@ class PostController extends Controller
             'title'    => 'required', 
             'subtitle' => 'required',
             'slug'     => 'required',
-            'body'     => 'required'
+            'body'     => 'required',
+            'image'    => 'required'
             ]);
+
+        // Upload Slike Posta
+        if ($request->hasFile('image')) {
+
+            // ako zelim originalno ime slike
+            // return $request->image->getClientOriginalName();
+
+            // Random Name slike
+            $imageName = $request->image->store('public');
+        }
 
         // Ubacujem update-ovan post u bazu
         $post = Post::find($id);
 
+        $post->image    = $imageName;
         $post->title    = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug     = $request->slug;
