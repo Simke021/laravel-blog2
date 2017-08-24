@@ -2,9 +2,13 @@
 
 @section('bg-img', asset('user/img/post-bg.jpg'))
 
+@section('head')
+    <link rel="stylesheet" href="{{ asset('user/css/prism.css')}}">
+@endsection
+
 @section('title', $post->title)
 
-@section('sub-heading', $post->subtitle)
+@section('sub-title', $post->subtitle)
 
 @section('main-content')
 	
@@ -19,15 +23,14 @@
   js.src = "//connect.facebook.net/sr_RS/sdk.js#xfbml=1&version=v2.10&appId=265648440606199";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    <article>
-    
+    <article>  
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <small>Created At: <strong>{{ $post->created_at->diffForHumans() }}</strong></small>
                 
                     @foreach($post->categories as $category)
-                        <small class="pull-right" style="margin-right: 10px;"><a href="#">{{ $category->name }}</a></small>
+                      <a href="{{ route('category',$category->slug) }}"><small class="pull-right" style="margin-right: 10px;">{{ $category->name }}</small></a>
                     @endforeach 
                 
                     {!! htmlspecialchars_decode($post->body) !!}
@@ -35,14 +38,21 @@
                     <h4>Tag Clouds:</h4>
 
                     @foreach($post->tags as $tag)
-                        <small style="margin-right: 10px; border-radius: 5px; border: 1px solid gray; padding: 5px;"><a href="#">{{ $tag->name }}</a></small>
+                        <a href="{{ route('tag',$tag->slug) }}"><small style="margin-right: 10px; border-radius: 5px; border: 1px solid gray; padding: 5px;">{{ $tag->name }}</small></a>
                     @endforeach 
                 </div>
-                
-                <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="5"></div>
-                
+                <div>
+                  <hr>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div class="fb-comments" data-href="{{ Request::url() }}" data-width="100%" data-numposts="5"></div>
+                </div>
             </div>
         </div>
     </article>
     <hr>
+@endsection
+
+@section('footer')
+    <script src="{{ asset('user/js/prism.js')}}"></script>
 @endsection

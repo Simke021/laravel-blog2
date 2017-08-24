@@ -4,6 +4,12 @@
 Route::group(['namespace' => 'user'], function(){
 	Route::get('/', 'HomeController@index');
 	Route::get('post/{post}', 'PostController@post')->name('post');
+
+	// Route za tag
+	Route::get('post/tag/{tag}', 'HomeController@tag')->name('tag');
+
+	// Route za category
+	Route::get('post/category/{category}', 'HomeController@category')->name('category');
 });
 
 // Admin Routes
@@ -23,7 +29,6 @@ Route::group(['namespace' => 'admin'], function(){
 	// Category Routes
 	Route::resource('admin/category', 'CategoryController');
 
-	
 });
 
 

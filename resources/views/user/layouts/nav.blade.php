@@ -41,7 +41,7 @@
                     <div class="site-heading">
                         <h1>@yield('title')</h1>
                         <hr class="small">
-                        <span class="subheading">@yield('sub-Heading')</span>
+                        <span class="subheading">@yield('sub-title')</span>
                     </div>
                 </div>
             </div>

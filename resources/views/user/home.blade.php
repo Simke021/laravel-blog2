@@ -4,7 +4,7 @@
 
 @section('title', 'Welcome to My Blog')
 
-@section('sub-Heading', 'A Clean Blog Theme by Start Bootstrap')
+@section('sub-title', 'A Clean Blog Theme by Start Bootstrap')
 
 @section('main-content')
 	<!-- Main Content -->

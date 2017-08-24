@@ -128,8 +128,8 @@
 @section('footerSection')
  <!-- Za unos -->
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js')}}"></script>
-<!-- CK Editor CND -->
-<script src="//cdn.ckeditor.com/4.7.2/full/ckeditor.js"></script>
+<!-- CK Editor  -->
+<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 <!-- CK editor script -->
 <script>
   $(function () {
