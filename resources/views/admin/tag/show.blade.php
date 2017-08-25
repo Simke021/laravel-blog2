@@ -16,6 +16,9 @@
 		    <section class="content">
 		      <!-- Default box -->
 		      <div class="box">
+		      	<div class="box-header">
+		      		@include('includes.messages')
+		      	</div>
 		        <div class="box-header with-border">
 		          <h3 class="box-title">Tags</h3>
 		          <a href="{{ route('tag.create') }}" class="col-lg-offset-5 btn btn-success">Add New Tag</a>

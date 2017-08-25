@@ -47,7 +47,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
         // Redirekcija
-        return redirect(route('role.index'));
+        return redirect(route('role.index'))->with('message', 'Role created succesfully.');
     }
 
     /**
@@ -94,7 +94,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->save();
         // Redirekcija
-        return redirect(route('role.index'));
+        return redirect(route('role.index'))->with('message', 'Role updated succesfully.');
     }
 
     /**
@@ -106,6 +106,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         role::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Role deleted succesfully.');
     }
 }

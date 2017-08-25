@@ -20,8 +20,8 @@
 		      		@include('includes.messages')
 		      	</div>
 		        <div class="box-header with-border">
-		          <h3 class="box-title">Roles</h3>
-		          <a href="{{ route('role.create') }}" class="col-lg-offset-5 btn btn-success">Add New Role</a>
+		          <h3 class="box-title">Permissions</h3>
+		          <a href="{{ route('permission.create') }}" class="col-lg-offset-5 btn btn-success">Add New Permission</a>
 
 		          <div class="box-tools pull-right">
 		            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -38,26 +38,26 @@
 			                <thead>
 			                <tr>
 			                  <th>S.No</th>
-			                  <th>Role Name</th>
+			                  <th>Permission Name</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>
 			                </thead>
 			                <tbody>
-			            @foreach($roles as $role)
+			            @foreach($permissions as $permission)
 			                <tr>
-			                  <td>{{ $role->id }}</td>
-			                  <td>{{ $role->name }}</td>
-			                  <td><a href="{{ route('role.edit', $role->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+			                  <td>{{ $loop->index + 1 }}</td>
+			                  <td>{{ $permission->name }}</td>
+			                  <td><a href="{{ route('permission.edit', $permission->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 			                  <td>
-			                  	<form id="delete-form-{{ $role->id }}" action="{{ route('role.destroy', $role->id) }}" method="POST" style="display:none;" >
+			                  	<form id="delete-form-{{ $permission->id }}" action="{{ route('permission.destroy', $permission->id) }}" method="POST" style="display:none;" >
 			                  		{{ csrf_field() }}
 			                  		{{ method_field('DELETE') }}
 			                  	</form>
 			                  	<a href="" 
 			                  		onclick="
-			                  			if(confirm('Do you Realy want to delete this Role?')) {
-			                  				event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit(); 
+			                  			if(confirm('Do you Realy want to delete this permission?')) {
+			                  				event.preventDefault(); document.getElementById('delete-form-{{ $permission->id }}').submit(); 
 			                  			}else{
 											event.preventDefault();
 			                  			}" ><span class="glyphicon glyphicon-trash"></span>
@@ -69,7 +69,7 @@
 			                <tfoot>
 			                <tr>
 			                  <th>S.No</th>
-			                  <th>Role Name</th>
+			                  <th>Permission Name</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>

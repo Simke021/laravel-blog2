@@ -62,7 +62,7 @@ class TagController extends Controller
         $tag->save();
 
         // Redirekcija
-        return redirect(route('tag.index'));
+        return redirect(route('tag.index'))->with('message', 'Tag created succesfully.');
     }
 
     /**
@@ -114,7 +114,7 @@ class TagController extends Controller
         $tag->save();
 
         // Redirektujem 
-        return redirect(route('tag.index'));
+        return redirect(route('tag.index'))->with('message', 'Tag updated succesfully.');
     }
 
     /**
@@ -129,6 +129,6 @@ class TagController extends Controller
         Tag::where('id', $id )->delete();
 
         // Redirekcija
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Tag deleted succesfully.');
     }
 }

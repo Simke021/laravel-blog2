@@ -83,7 +83,7 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
         $post->categories()->sync($request->categories);
         // Redirekcija
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('message', 'Post created succesfully.');
 
     }
 
@@ -140,7 +140,7 @@ class PostController extends Controller
             // return $request->image->getClientOriginalName();
 
             // Random Name slike
-            $imageName = $request->image->store('public');
+            $imageName = $request->image->store('public')->with('message', 'Post updated succesfully.');
         }
 
         // Ubacujem update-ovan post u bazu
@@ -176,6 +176,6 @@ class PostController extends Controller
         Post::where('id', $id )->delete();
 
         // Redirekcija
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Post deleted succesfully.');
     }
 }

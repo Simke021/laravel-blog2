@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $category->save();
 
         // Redirekcija
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('message', 'Category created succesfully.');
     }
 
     /**
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         $category->save();
 
         // Redirektujem 
-        return redirect(route('category.index'));
+        return redirect(route('category.index'))->with('message', 'Category updated succesfully.');
     }
 
     /**
@@ -128,6 +128,6 @@ class CategoryController extends Controller
         Category::where('id', $id )->delete();
 
         // Redirekcija
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Category deleted succesfully.');
     }
 }
