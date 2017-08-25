@@ -8,7 +8,7 @@
 		    <!-- Content Header (Page header) -->
 		    <section class="content-header">
 		      <h1>
-		        Users
+		        Tags
 		        <small>it all starts here</small>
 		      </h1>
 		    </section>
@@ -17,8 +17,8 @@
 		      <!-- Default box -->
 		      <div class="box">
 		        <div class="box-header with-border">
-		          <h3 class="box-title">Users</h3>
-		          <a href="{{ route('user.create') }}" class="col-lg-offset-5 btn btn-success">Add New User</a>
+		          <h3 class="box-title">Roles</h3>
+		          <a href="{{ route('role.create') }}" class="col-lg-offset-5 btn btn-success">Add New Role</a>
 
 		          <div class="box-tools pull-right">
 		            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -35,26 +35,26 @@
 			                <thead>
 			                <tr>
 			                  <th>S.No</th>
-			                  <th>Name</th>
+			                  <th>Role Name</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>
 			                </thead>
 			                <tbody>
-			            @foreach($users as $user)
+			            @foreach($roles as $role)
 			                <tr>
-			                  <td>{{ $loop->index + 1 }}</td>
-			                  <td>{{ $user->name }}</td>
-			                  <td><a href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+			                  <td>{{ $role->id }}</td>
+			                  <td>{{ $role->name }}</td>
+			                  <td><a href="{{ route('role.edit', $role->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 			                  <td>
-			                  	<form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}" method="user" style="display:none;" >
+			                  	<form id="delete-form-{{ $role->id }}" action="{{ route('role.destroy', $role->id) }}" method="POST" style="display:none;" >
 			                  		{{ csrf_field() }}
 			                  		{{ method_field('DELETE') }}
 			                  	</form>
 			                  	<a href="" 
 			                  		onclick="
-			                  			if(confirm('Do you Realy want to delete this user?')) {
-			                  				event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit(); 
+			                  			if(confirm('Do you Realy want to delete this Role?')) {
+			                  				event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit(); 
 			                  			}else{
 											event.preventDefault();
 			                  			}" ><span class="glyphicon glyphicon-trash"></span>
@@ -66,7 +66,7 @@
 			                <tfoot>
 			                <tr>
 			                  <th>S.No</th>
-			                  <th>User Name</th>
+			                  <th>Role Name</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>
