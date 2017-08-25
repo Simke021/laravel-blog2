@@ -4,7 +4,7 @@
 
 @section('head')
 
-@section('title', ' Login Here')
+@section('title', ' Register Here')
 
 @section('sub-title', '' )
 

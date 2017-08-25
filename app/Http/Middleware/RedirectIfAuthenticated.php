@@ -17,29 +17,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        switch ($guard) {
-        // Proveravam da li je admin logovan
-            case 'admin':
-                // Ako jeste, nedozvoljavam mu da pristupi login strani
-                if (Auth::guard($guard)->check()) {
-
-                    return redirect('admin/home');
-
-                }
-
-                break;
-            
-            default:
-                // Ako nije, redirektujem ga u front deo za korinike, tj naslovnu stranu
-                if (Auth::guard($guard)->check()) {
-
-                    return redirect('/home');
-
-                }
-
-                break;
+        if (Auth::guard($guard)->check()) {
+            return redirect('/home');
         }
-        
 
         return $next($request);
     }

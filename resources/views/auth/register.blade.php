@@ -4,9 +4,9 @@
 
 @section('head')
 
-@section('title', ' Register Here')
+@section('title', ' Login Here')
 
-@section('sub-title', 'Join Our Small Programming Community' )
+@section('sub-title', '' )
 
 @section('main-content')
     

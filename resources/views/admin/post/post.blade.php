@@ -50,7 +50,7 @@
                       <div class="form-group">
                         <label>Select Tags:</label>
                         <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a Tag" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
-                          @foreach($tags as $tag)
+                          @foreach($posts as $post)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                           @endforeach
                         </select>
