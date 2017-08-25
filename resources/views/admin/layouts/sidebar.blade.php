@@ -8,7 +8,9 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexandar Ljubišić</p>
+        @if (Auth::user())
+          <p>Welcome: {{ Auth::user()->name }}</span></p>        
+        @endif
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

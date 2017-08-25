@@ -36,7 +36,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     // Admin Login get
@@ -54,5 +54,11 @@ class LoginController extends Controller
         }
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    // Copy Paste iz AutenticatesUsers.php
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

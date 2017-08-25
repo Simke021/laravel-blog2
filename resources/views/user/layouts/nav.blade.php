@@ -7,7 +7,11 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/">Start Bootstrap</a>
+                @if (Auth::user())
+                    <span class="navbar-brand" href="/">Welcome: {{ Auth::user()->name }}</span>
+                @else
+                    <span class="navbar-brand" href="/">Hello: Guest</span>
+                @endif
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

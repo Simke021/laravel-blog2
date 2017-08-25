@@ -44,9 +44,17 @@
                 <div>
                   <hr>
                 </div>
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                  <div class="fb-comments" data-href="{{ Request::url() }}" data-width="100%" data-numposts="5"></div>
-                </div>
+
+                @if (Auth::user())
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                      <div class="fb-comments" data-href="{{ Request::url() }}" data-width="100%" data-numposts="5"></div>
+                    </div>
+                @else
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                      <h4 class="alert alert-danger">You must be logged in to post a comment!</h4>
+                    </div>
+                @endif
+                
             </div>
         </div>
     </article>
