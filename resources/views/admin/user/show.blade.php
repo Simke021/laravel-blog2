@@ -7,10 +7,7 @@
 		  <div class="content-wrapper">
 		    <!-- Content Header (Page header) -->
 		    <section class="content-header">
-		      <h1>
-		        Users
-		        <small>it all starts here</small>
-		      </h1>
+				@include('admin.layouts.pageHead')		      
 		    </section>
 		    <!-- Main content -->
 		    <section class="content">
@@ -39,6 +36,7 @@
 			                <tr>
 			                  <th>S.No</th>
 			                  <th>Name</th>
+			                  <th>Assigned Roles</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>
@@ -48,9 +46,14 @@
 			                <tr>
 			                  <td>{{ $loop->index + 1 }}</td>
 			                  <td>{{ $user->name }}</td>
+			                  <td>
+			                  	@foreach($user->roles as $role)
+									{{ $role->name }},
+			                  	@endforeach
+			                  </td>
 			                  <td><a href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 			                  <td>
-			                  	<form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}" method="user" style="display:none;" >
+			                  	<form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}" method="post" style="display:none;" >
 			                  		{{ csrf_field() }}
 			                  		{{ method_field('DELETE') }}
 			                  	</form>
@@ -70,6 +73,7 @@
 			                <tr>
 			                  <th>S.No</th>
 			                  <th>User Name</th>
+			                  <th>Assigned Roles</th>
 			                  <th>Edit</th>
 			                  <th>Delete</th>
 			                </tr>

@@ -6,10 +6,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Text Editors
-        <small>Advanced form element</small>
-      </h1>
+      @include('admin.layouts.pageHead')  
     </section>
     <!-- Main content -->
     <section class="content">

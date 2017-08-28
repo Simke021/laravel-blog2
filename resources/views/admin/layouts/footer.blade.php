@@ -1,5 +1,5 @@
   <footer class="main-footer text-center">
-    <p><strong>Copyright &copy;  <a target="_blank" href="https://www.facebook.com/aleksandar.ljubisic">Aleksandar Ljubišić</a> All rights reserved <a target="_blank" href="https://github.com/Simke021">Find me on github</a>.</strong></p>
+    <p><strong>Copyright &copy; {{ Carbon\carbon::now()->year }} <a target="_blank" href="https://www.facebook.com/aleksandar.ljubisic">Aleksandar Ljubišić</a> All rights reserved <a target="_blank" href="https://github.com/Simke021">Find me on github</a>.</strong></p>
   </footer>
 
   <!-- jQuery 3.x. -->

@@ -10,6 +10,12 @@ use App\Model\admin\permission;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +54,8 @@ class RoleController extends Controller
         $role = new role;
         $role->name = $request->name;
         $role->save();
+
+        $role->permissions()->sync($request->permission);
         // Redirekcija
         return redirect(route('role.index'))->with('message', 'Role created succesfully.');
     }
@@ -71,11 +79,13 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-         // Trazim role u bazi po id-u i uzimam prvi kad naidjem na id koji trazim 
-       $role = Role::where('id', $id)->first();      
+        // Trazim role u bazi po id-u
+       $role = Role::find($id);  
+       // Trazin permission u bazi
+       $permissions = Permission::all();    
 
        // Prikazujem role za editovanje, sva polja popunjavam
-       return view('admin.role.edit', compact('role'));
+       return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -95,6 +105,8 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->name = $request->name;
         $role->save();
+
+        $role->permissions()->sync($request->permission);
         // Redirekcija
         return redirect(route('role.index'))->with('message', 'Role updated succesfully.');
     }

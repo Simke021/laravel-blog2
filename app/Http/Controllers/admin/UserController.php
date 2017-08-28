@@ -43,9 +43,24 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        return $request->all();
+
+        $this->validate($request, [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:admins',
+            'password' => 'required|string|min:6|confirmed',
+            'phone'    => 'required|numeric'
+            ]);
+
+        // Kriptujem sifru
+        $request['password'] = bcrypt($request->password);
+
+        $user = admin::create($request->all());
+        $user->roles()->sync($request->role);
+
+        return redirect(route('user.index'))->with('message', 'User created succesfully.');
     }
     /**
      * Display the specified resource.
@@ -66,7 +81,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Admin::find($id);
+        $roles = role::all();
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -78,7 +95,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255',
+            'phone'    => 'required|numeric'
+            ]);
+
+        // Update-ujem user-a bez - token method i role iz forme
+        $user = admin::where('id', $id)->update($request->except('_token', '_method', 'role'));
+
+        // Update-ujem i role iz tabele admin_role
+        admin::find($id)->roles()->sync($request->role);
+
+        return redirect(route('user.index'))->with('message', 'User updated succesfully.');
     }
 
     /**
@@ -89,6 +118,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        admin::where('id', $id)->delete();
+
+        return redirect()->back()->with('message', 'User was deleted successfully!');
     }
 }

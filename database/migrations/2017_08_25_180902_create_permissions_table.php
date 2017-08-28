@@ -20,7 +20,7 @@ class CreatePermissionsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permissions_role', function (Blueprint $table) {
+        Schema::create('permission_role', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('permission_id');
         });
