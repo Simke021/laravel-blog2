@@ -28,13 +28,20 @@
 
                 <p>
                   {{ Auth::user()->name }} - Web Developer
-                  <small>Member since {{ Auth::user()->created_at->toFormattedDateString() }}</small>
+                  <small>Member since: {{ Auth::user()->created_at->toFormattedDateString() }}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-block">Sign out</a>
+                  <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="btn btn primary">
+                            Logout
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                  </form>
                 </div>
               </li>
             </ul>

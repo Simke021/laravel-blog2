@@ -101,6 +101,9 @@ class UserController extends Controller
             'phone'    => 'required|numeric'
             ]);
 
+        // Proveravam status, da li je 1 ili 0
+        $request->status ? : $request['status'] = 0;
+
         // Update-ujem user-a bez - token method i role iz forme
         $user = admin::where('id', $id)->update($request->except('_token', '_method', 'role'));
 
