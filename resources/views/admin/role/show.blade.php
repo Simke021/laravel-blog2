@@ -8,7 +8,7 @@
 		    <!-- Content Header (Page header) -->
 		    <section class="content-header">
 		      <h1>
-		        Tags
+		        Roles
 		        <small>it all starts here</small>
 		      </h1>
 		    </section>

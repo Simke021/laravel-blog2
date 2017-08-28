@@ -39,12 +39,14 @@ class PermissionController extends Controller
     {
         // Validacija
         $this->validate($request, [
-            'name' => 'required|min:4, max:50|unique:permissions'
+            'name' => 'required|min:4, max:50|unique:permissions',
+            'for'  => 'required'
             ]);
 
         $permission = new Permission;
 
         $permission->name = $request->name;
+        $permission->for  = $request->for;
         // Save u bazu
         $permission->save();
 
@@ -90,12 +92,14 @@ class PermissionController extends Controller
     {
         // Validacija
         $this->validate($request, [
-            'name' => 'required|min:4, max:50|unique:permissions'
+            'name' => 'required|min:4, max:50|unique:permissions',
+            'for'  => 'required'
             ]);
 
         $permission = Permission::find($permission->id);
 
         $permission->name = $request->name;
+        $permission->for  = $request->for;
         // Save u bazu
         $permission->save();
 
@@ -112,6 +116,6 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         Permission::where('id', $permission->id)->delete();
-        return redirect()->back()->with('message', 'Pesmission updated succesfully.');
+        return redirect()->back()->with('message', 'Pesmission deleted succesfully.');
     }
 }
